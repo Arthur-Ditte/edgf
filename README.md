@@ -16,7 +16,7 @@ Our Django application, `example` is configured as an installed application in `
 # api/settings.py
 INSTALLED_APPS = [
     # ...
-    'example',
+    'ed',
 ]
 ```
 
@@ -44,7 +44,7 @@ WSGI_APPLICATION = 'api.wsgi.app'
 There is a single view which renders the current time in `example/views.py`:
 
 ```python
-# example/views.py
+# ed/views.py
 from datetime import datetime
 
 from django.http import HttpResponse
@@ -66,11 +66,10 @@ def index(request):
 This view is exposed a URL through `example/urls.py`:
 
 ```python
-# example/urls.py
+# ed/urls.py
 from django.urls import path
 
-from example.views import index
-
+from ed.views import index
 
 urlpatterns = [
     path('', index),
@@ -85,7 +84,7 @@ from django.urls import path, include
 
 urlpatterns = [
     ...
-    path('', include('example.urls')),
+    path('', include('ed.urls')),
 ]
 ```
 
