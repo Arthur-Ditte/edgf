@@ -1,14 +1,11 @@
+psycopg2-binary
 Django==5.1
-pymongo==4.8.0
 dj-database-url
 psycopg2
 django-import-export
 djangorestframework
-gunicorn
 dj-database-url
-whitenoise
 random2
-psycopg2-binary
 django-allauth
 django-admin-honeypot
 django-filter
