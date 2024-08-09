@@ -22,7 +22,6 @@ def videos(request):
 
 
 def forum_view(request):
-    try:
         data = forum.objects.all().order_by('-created_at')
         form = addforum()
         likeobj = forum.objects.annotate(like_count=Count('like')).order_by('-like_count')[:3]
@@ -33,8 +32,6 @@ def forum_view(request):
                 instance.user = request.user.username
                 instance.save()
         return render(request, 'forum/forum.html', {'message': data, 'form': form, 'likeobj': likeobj})
-    except:
-        return render(request, 'error_code/404.html')
 
 
 def forum_create(request):
