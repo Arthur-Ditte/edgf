@@ -356,7 +356,7 @@ def login_view(request):
         reasonlike1 = 'You are not logged in.'
         reasonlike2 = 'Log in to Like and Dislike Posts'
         if request.user.is_authenticated:
-            return redirect('/team/nick')
+            return redirect('/')
         elif request.POST.get('username'):
             username = request.POST.get('username')
             password = request.POST.get('password')
@@ -370,7 +370,7 @@ def login_view(request):
         else:
             return render(request, 'Account/login.html', {'reasonError1': reasonlike1, 'reasonError2': reasonlike2})
     if request.user.is_authenticated:
-        return redirect('/team/nick')
+        return redirect('/')
     elif request.POST.get('username'):
         username = request.POST.get('username')
         password = request.POST.get('password')
