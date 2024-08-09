@@ -167,3 +167,6 @@ class notification(models.Model):
     def __str__(self):
         return f'{self.User} -> {self.Warning} | {self.Post_title} -> {self.Post_message} -> {self.Post_Tags}'
 
+from django.db import models
+
+# Create your models here.

@@ -13,6 +13,10 @@ from .models import NickUser, forum, notification, profile, comment
 from .forms import addforum, commentform, notify, profileform, UploadFileForm, UserAdminCreationForm
 
 
+def nick(request):
+    return render(request, 'index.html')
+
+
 def home(request):
     return render(request, 'index.html')
 
@@ -22,17 +26,19 @@ def videos(request):
 
 
 def forum_view(request):
-    data = forum.objects.all().order_by('-created_at')
-    form = addforum()
-    likeobj = forum.objects.annotate(like_count=Count('like')).order_by('-like_count')[:3]
-    if request.method == 'POST':
-        form = addforum(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user.username
-            instance.save()
-
-    return render(request, 'forum/forum.html', {'message': data, 'form': form, 'likeobj': likeobj})
+    try:
+        data = forum.objects.all().order_by('-created_at')
+        form = addforum()
+        likeobj = forum.objects.annotate(like_count=Count('like')).order_by('-like_count')[:3]
+        if request.method == 'POST':
+            form = addforum(request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.user = request.user.username
+                instance.save()
+        return render(request, 'forum/forum.html', {'message': data, 'form': form, 'likeobj': likeobj})
+    except:
+        return render(request, 'error_code/404.html')
 
 
 def forum_create(request):
@@ -187,6 +193,7 @@ def searchworker_view(request):
     return redirect(url)
 
 
+
 def profile_view(request):
     if request.GET.get('user'):
         usernameget = request.GET.get('user')
@@ -198,8 +205,7 @@ def profile_view(request):
         cc_counter = cc_data.count()
 
     return render(request, 'Account/profile.html',
-                  {'profile': profile_data, 'data': forum_data, 'msg_counter': msg_counter, 'cc_counter': cc_counter,
-                   'friend_data': friends_data, 'cc_data': cc_data, 'user': usernameget})
+                  {'profile': profile_data, 'data': forum_data, 'msg_counter': msg_counter,'cc_counter': cc_counter ,'friend_data': friends_data,'cc_data': cc_data, 'user': usernameget})
 
 
 def notification_view(request):
@@ -213,6 +219,7 @@ def settings_view(request):
 
 def fa(request):
     if request.GET.get('fa') == 'true':
+
         user = request.GET.get('user')
         user_request = request.GET.get('user_request')
 
@@ -239,12 +246,12 @@ def fa(request):
         return redirect(f'/forum/profile/?user={user}')
 
     if request.GET.get('fa') == 'accept':
-        user = request.GET.get('user')  #Resty
-        user_request = request.GET.get('user_request')  #whynot
+        user = request.GET.get('user') #Resty
+        user_request = request.GET.get('user_request') #whynot
 
         userobj = get_object_or_404(profile, username=user)  #Restyobj
         user_requestobj = get_object_or_404(profile, username=user_request)  #whynotobj
-        user_id = get_object_or_404(get_user_model(), username=user)  #Restyid
+        user_id = get_object_or_404(get_user_model(), username=user) #Restyid
 
         userobj.fa_send.remove(request.user)
         user_requestobj.fa_list.remove(user_id)
@@ -410,3 +417,6 @@ def supporter(request):
 
 def rickroll(request):
     return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+from django.shortcuts import render
+
+# Create your views here.

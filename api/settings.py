@@ -1,13 +1,10 @@
+import os
 from pathlib import Path
 import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=cldztbc4jg&xl0!x673!*v2_=p$$eu)=7*f#d0#zs$44xx-h^'
@@ -27,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ed.apps.Config',
+    'ed',
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -46,6 +43,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'api.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,18 +60,7 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
-
 WSGI_APPLICATION = 'api.wsgi.app'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-# Note: Django modules for using databases are not support in serverless
-# environments like Vercel. You can use a database over HTTP, hosted elsewhere.
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -82,9 +69,6 @@ DATABASES = {
         conn_health_checks=True,
     )
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -110,13 +94,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+
