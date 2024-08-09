@@ -13,10 +13,6 @@ from .models import NickUser, forum, notification, profile, comment
 from .forms import addforum, commentform, notify, profileform, UploadFileForm, UserAdminCreationForm
 
 
-def nick(request):
-    return render(request, 'index.html')
-
-
 def home(request):
     return render(request, 'index.html')
 
