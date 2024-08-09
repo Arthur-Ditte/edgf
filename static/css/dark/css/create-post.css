@@ -3,7 +3,7 @@
     display: block;
     background-color: #faebd7;
     border: 30px solid transparent;
-    border-image: url("../../../../img/nick/darkthiccborder.png") 20% round;
+    border-image: url("../../../img/darkthiccborder.png") 20% round;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 10px;

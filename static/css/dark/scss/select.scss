@@ -7,9 +7,7 @@ $accentHover: rgb(235, 97, 33);
 
     #filter{
     background-color: $accentColor;
-    border: none;
-    border:$accentDark solid;
-    border-width: .2em;
+    border: .2em solid;
     border-radius: 0 .7em .7em 0;
     }
     #filter:hover{

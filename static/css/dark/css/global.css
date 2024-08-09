@@ -6,7 +6,7 @@
     background-color: rgb(216, 202, 181);
   }
   body {
-    background-image: url("../../../../img/nick/patterndark.png");
+    background-image: url("../../../img/patterndark.png");
     background-size: 2000px;
     background-repeat: inherit;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -15,7 +15,7 @@
   .post {
     background-color: #faebd7;
     border: 30px solid transparent;
-    border-image: url("../../../../img/nick/darkthiccborder.png") 20% round;
+    border-image: url("../../../img/darkthiccborder.png") 20% round;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 10px;
